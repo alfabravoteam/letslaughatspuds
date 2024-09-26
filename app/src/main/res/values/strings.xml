@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">LetsLaughAtSpurs</string>
+    <string name="interval_hours">Around %s hours ago</string>
+    <string name="interval_days">Close to %s days ago</string>
+    <string name="interval_weeks">Some %s weeks ago</string>
+    <string name="interval_seconds">More than %s seconds ago</string>
+    <string name="interval_years">Beyond %s years ago</string>
+
+    <string name="main_activity_title">Let\'s laugh at Sp*rs</string>
+    <string name="slider_title">Let\'s laugh in:</string>
+    <string name="last_league_label">The last time they won the league was </string>
+    <string name="last_trophy_label">The last time they won anything at all was </string>
+</resources>
