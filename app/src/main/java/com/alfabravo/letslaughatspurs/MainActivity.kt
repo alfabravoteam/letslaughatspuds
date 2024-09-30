@@ -2,6 +2,7 @@ package com.alfabravo.letslaughatspurs
 
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateFormat
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,9 +28,9 @@ import androidx.compose.ui.unit.sp
 import com.alfabravo.letslaughatspurs.ui.theme.LetsLaughAtSpursTheme
 import com.alfabravo.letslaughatspurs.ui.theme.PurpleGrey40
 import com.alfabravo.letslaughatspurs.ui.theme.SpudsBlue
-import com.alfabravo.letslaughatspurs.ui.theme.SpudsYellow
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class MainActivity : ComponentActivity() {
@@ -52,13 +53,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun BasicCounter() {
     val context = LocalContext.current
+
+
+    val d = Date()
+    val currentDate: String = DateFormat.format("yyyy-MM-dd hh:mm:ss", d.time).toString()
+//    Log.d("Date definition", currentDate)
+
     val leagueDiff = getLegacyDateDifference(
         "1961-04-26 17:00:00",
-        "2024-09-25 00:00:01"
+        currentDate
     )
     val trophyDiff = getLegacyDateDifference(
         "2008-02-24 17:00:00",
-        "2024-09-25 00:00:01"
+        currentDate
     )
     var sliderPosition by remember { mutableStateOf(0f) }
     val dateOptions: List<String> = listOf("seconds", "hours", "days", "weeks", "years")

@@ -1,4 +1,4 @@
-== Let's laugh at Sp*rs
+== Let's laugh at Sp*rs ==
 
 I just want to learn how to build Android apps. So, I took this as an inspiration.
 
