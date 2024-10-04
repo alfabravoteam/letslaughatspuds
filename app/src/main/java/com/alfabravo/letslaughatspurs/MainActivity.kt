@@ -82,7 +82,13 @@ fun BasicCounter() {
         currentDate
     )
     var sliderPosition by remember { mutableStateOf(0f) }
-    val dateOptions: List<String> = listOf("seconds", "hours", "days", "weeks", "years")
+    val dateOptions: List<String> = listOf(
+        stringResource(R.string.label_seconds),
+        stringResource(R.string.label_hours),
+        stringResource(R.string.label_days),
+        stringResource(R.string.label_weeks),
+        stringResource(R.string.label_years)
+    )
     var leagueDateCalculationText by remember { mutableStateOf("") }
     var trophyDateCalculationText by remember { mutableStateOf("") }
 
@@ -104,7 +110,7 @@ fun BasicCounter() {
                 .padding(5.dp)
         ) {
             Text(
-                text = stringResource(R.string.slider_title),
+                text = stringResource( R.string.slider_title, dateOptions[sliderPosition.toInt()]),
                 modifier = Modifier.padding(10.dp)
             )
             Slider(
@@ -122,13 +128,6 @@ fun BasicCounter() {
                 steps = 3,
                 valueRange = 0f .. 4f,
                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 5.dp)
-            )
-            Text(
-                text = dateOptions[sliderPosition.toInt()],
-                modifier = Modifier
-                    .padding(10.dp)
-                    .align(Alignment.CenterHorizontally),
-                fontSize = 18.sp
             )
         }
         Spacer(modifier = Modifier.height(30.dp))

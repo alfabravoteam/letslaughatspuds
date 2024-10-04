@@ -7,7 +7,12 @@
     <string name="interval_years">Beyond %s years ago</string>
 
     <string name="main_activity_title">Let\'s laugh at Sp*rs</string>
-    <string name="slider_title">Let\'s laugh in:</string>
+    <string name="slider_title">Let\'s laugh in: %s</string>
     <string name="last_league_label">The last time they won the league was </string>
     <string name="last_trophy_label">The last time they won anything at all was </string>
+    <string name="label_seconds">seconds</string>
+    <string name="label_hours">hours</string>
+    <string name="label_days">days</string>
+    <string name="label_weeks">weeks</string>
+    <string name="label_years">years</string>
 </resources>

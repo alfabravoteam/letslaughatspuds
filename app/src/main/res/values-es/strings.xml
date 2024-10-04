@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LetsLaughAtSpurs</string>
+    <string name="interval_hours">Hace unas %s horas</string>
+    <string name="interval_days">Cerca de %s días atrás</string>
+    <string name="interval_weeks">Alrededor de %s semanas atrás</string>
+    <string name="interval_seconds">Hace más de %s segundos</string>
+    <string name="interval_years">Pasados %s años</string>
+    <string name="main_activity_title">A reírnos de los Sp*rs</string>
+    <string name="slider_title">Riamos en: %s</string>
+    <string name="last_league_label">La última vez que ganaron la liga fue</string>
+    <string name="last_trophy_label">La última vez que ganaron algo fue</string>
+    <string name="label_seconds">segundos</string>
+    <string name="label_hours">horas</string>
+    <string name="label_days">días</string>
+    <string name="label_weeks">semanas</string>
+    <string name="label_years">años</string>
+</resources>
