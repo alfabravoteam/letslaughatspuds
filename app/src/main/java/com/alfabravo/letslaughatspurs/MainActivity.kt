@@ -37,6 +37,7 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -47,6 +48,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alfabravo.letslaughatspurs.ui.theme.LetsLaughAtSpursTheme
+import com.alfabravo.letslaughatspurs.ui.theme.Purple80
 import com.alfabravo.letslaughatspurs.ui.theme.PurpleGrey40
 import com.alfabravo.letslaughatspurs.ui.theme.SpudsBlue
 import java.text.NumberFormat
@@ -62,7 +64,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.onPrimary
                 ) {
                     CenterAlignedTopAppBarExample()
                 }
@@ -154,7 +156,7 @@ fun BasicCounter(innerPadding: PaddingValues) {
                 TextStyle(
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 24.sp,
-                    color = SpudsBlue
+                    color = MaterialTheme.colorScheme.inversePrimary
                 )
             )
         )
@@ -178,7 +180,7 @@ fun BasicCounter(innerPadding: PaddingValues) {
                 TextStyle(
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 24.sp,
-                    color = SpudsBlue
+                    color = MaterialTheme.colorScheme.inversePrimary
                 )
             )
         )
