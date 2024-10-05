@@ -15,4 +15,9 @@
     <string name="label_days">días</string>
     <string name="label_weeks">semanas</string>
     <string name="label_years">años</string>
+    <string name="about_text">Este es sólo un ejercicio para aprender Jetpack, Kotlin y buen gusto en fútbol. <br /><br />https://github.com/alfabravoteam/letslaughatspuds</string>
+    <string name="about_title">Sobre esta app</string>
+    <string name="main.menu_about">Acerca de</string>
+    <string name="main.menu_trophy">Galería de trofeos</string>
+    <string name="main.menu_whatya_think">What do you think...</string>
 </resources>

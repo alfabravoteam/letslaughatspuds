@@ -15,4 +15,11 @@
     <string name="label_days">days</string>
     <string name="label_weeks">weeks</string>
     <string name="label_years">years</string>
+    <string name="about_text">This is a learning exercise on Jetpack, Kotlin and taste on football. \\r\\nhttps://github.com/alfabravoteam/letslaughatspuds</string>
+    <string name="about_title">About this app</string>
+    <string name="main.menu_about">About</string>
+    <string name="main.menu_trophy">Trophy cabinet</string>
+    <string name="main.menu_whatya_think">What do u think...</string>
+    <string name="shit_title">What do you think of Tottenham!?</string>
+    <string name="shit_text">-S***! -What do you think of s***? -Tottenham! Thank you! -That\'s alright!</string>
 </resources>

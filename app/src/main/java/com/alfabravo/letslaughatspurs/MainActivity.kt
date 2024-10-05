@@ -11,10 +11,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DropdownMenu
@@ -29,6 +31,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.*
@@ -39,7 +42,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -185,10 +187,16 @@ fun BasicCounter(innerPadding: PaddingValues) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CenterAlignedTopAppBarExample() {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
     var expandedMenu by remember { mutableStateOf(false)}
+    val showAbout = remember { mutableStateOf(false) }
+    val showShit = remember { mutableStateOf(false) }
+
+    aboutDialog(showAbout)
+    shitDialog(showShit)
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -227,21 +235,26 @@ fun CenterAlignedTopAppBarExample() {
                     }
                     DropdownMenu(expanded = expandedMenu, onDismissRequest = { expandedMenu = false }) {
                         DropdownMenuItem(
-                            text = { Text("Trophy cabinet") },
-                            onClick = { /* Handle edit! */ },
+                            text = { Text(stringResource(R.string.main_menu_trophy)) },
+                            onClick = { /* Handle cabinet! */ },
                             leadingIcon = { Icon(Icons.Outlined.Edit, contentDescription = null) }
                         )
                         DropdownMenuItem(
-                            text = { Text("Whatya think?") },
-                            onClick = { /* Handle settings! */ },
+                            text = { Text(stringResource(R.string.main_menu_whatya_think)) },
+                            onClick = {
+                                expandedMenu = !expandedMenu
+                                showShit.value = true
+                            },
                             leadingIcon = { Icon(Icons.Outlined.Settings, contentDescription = null) }
                         )
                         HorizontalDivider()
                         DropdownMenuItem(
-                            text = { Text("About") },
-                            onClick = { /* Handle send feedback! */ },
-                            leadingIcon = { Icon(Icons.Outlined.Info, contentDescription = null) },
-                            trailingIcon = { Text("F11", textAlign = TextAlign.Center) }
+                            text = { Text(stringResource(R.string.main_menu_about)) },
+                            onClick = {
+                                expandedMenu = !expandedMenu
+                                showAbout.value = true
+                            },
+                            leadingIcon = { Icon(Icons.Outlined.Info, contentDescription = null) }
                         )
                     }
 
@@ -253,6 +266,48 @@ fun CenterAlignedTopAppBarExample() {
     }
 }
 
+@Composable
+fun aboutDialog(openedAbout: MutableState<Boolean>) {
+
+    if (openedAbout.value) {
+        AlertDialog(
+            onDismissRequest = {
+                openedAbout.value = false
+            },
+            icon = { Icon(Icons.Filled.Info, contentDescription = null) },
+            title = { Text(text = stringResource(R.string.about_title)) },
+            text = {
+                Text(
+                    stringResource(R.string.about_text)
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = { openedAbout.value = false }) { Text("Close") }
+            }
+        )
+    }
+}
+
+@Composable
+fun shitDialog(openedShit: MutableState<Boolean>) {
+    if (openedShit.value) {
+        AlertDialog(
+            onDismissRequest = {
+                openedShit.value = false
+            },
+            icon = { Icon(Icons.Filled.Info, contentDescription = null) },
+            title = { Text(text = stringResource(R.string.shit_title)) },
+            text = {
+                Text(
+                    stringResource(R.string.shit_text)
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = { openedShit.value = false }) { Text("Close") }
+            }
+        )
+    }
+}
 
 /**
  * Calculate the difference between two dates, in different formats/time intervals
