@@ -5,18 +5,22 @@ package com.alfabravo.letslaughatspurs
 import android.content.Context
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +39,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -65,13 +70,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun BasicCounter() {
+fun BasicCounter(innerPadding: PaddingValues) {
     val context = LocalContext.current
-
 
     val d = Date()
     val currentDate: String = DateFormat.format("yyyy-MM-dd hh:mm:ss", d.time).toString()
-//    Log.d("Date definition", currentDate)
 
     val leagueDiff = getLegacyDateDifference(
         "1961-04-26 17:00:00",
@@ -185,6 +188,7 @@ fun BasicCounter() {
 @Composable
 fun CenterAlignedTopAppBarExample() {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    var expandedMenu by remember { mutableStateOf(false)}
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -211,17 +215,41 @@ fun CenterAlignedTopAppBarExample() {
                     }
                 },*/
                 actions = {
-                    IconButton(onClick = { /* do something */ }) {
+                    IconButton(
+                        onClick = {
+                            expandedMenu = true
+                        }
+                    ) {
                         Icon(
                             imageVector = Icons.Filled.Menu,
-                            contentDescription = "Localized description"
+                            contentDescription = "Main menu options"
                         )
                     }
+                    DropdownMenu(expanded = expandedMenu, onDismissRequest = { expandedMenu = false }) {
+                        DropdownMenuItem(
+                            text = { Text("Trophy cabinet") },
+                            onClick = { /* Handle edit! */ },
+                            leadingIcon = { Icon(Icons.Outlined.Edit, contentDescription = null) }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Whatya think?") },
+                            onClick = { /* Handle settings! */ },
+                            leadingIcon = { Icon(Icons.Outlined.Settings, contentDescription = null) }
+                        )
+                        HorizontalDivider()
+                        DropdownMenuItem(
+                            text = { Text("About") },
+                            onClick = { /* Handle send feedback! */ },
+                            leadingIcon = { Icon(Icons.Outlined.Info, contentDescription = null) },
+                            trailingIcon = { Text("F11", textAlign = TextAlign.Center) }
+                        )
+                    }
+
                 },
                 scrollBehavior = scrollBehavior,
             )
         },
-    ) { innerPadding -> BasicCounter()
+    ) { innerPadding -> BasicCounter(innerPadding)
     }
 }
 
@@ -239,7 +267,7 @@ private fun getLegacyDateDifference(
     val bgn = fmt.parse(fromDate)
     val end = fmt.parse(toDate)
 
-    val milliseconds = end.time - bgn.time
+    val milliseconds = end!!.time - bgn!!.time
     val days = milliseconds / 1000 / 3600 / 24
     val hours = milliseconds / 1000 / 3600
     val minutes = milliseconds / 1000 / 3600
@@ -257,7 +285,6 @@ private fun getLegacyDateDifference(
 private fun defineDateCalculationLabel(
     context: Context, position: Float = 0f, dateDiffMap: Map<String, Long>
 ): String {
-    Log.d("DefiningLabel", "position: " + position)
     return when(position)  {
         1f -> context.resources.getString(
             R.string.interval_hours,
@@ -283,6 +310,6 @@ private fun defineDateCalculationLabel(
 @Composable
 fun MainLaughPreview() {
     LetsLaughAtSpursTheme {
-        BasicCounter()
+        CenterAlignedTopAppBarExample()
     }
 }
